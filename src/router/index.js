@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 import ShoppingView from '@/views/CompraAtual.vue'
-import CadastroView from '@/views/TelaCadastro.vue'
+import CadastroItemView from '@/views/CadastroItem.vue'
 import RelatorioView from '@/views/Relatorios.vue'
+import CadastroListaView from '@/views/CadastroLista.vue'
 
 const routes = [
   {
@@ -15,14 +16,19 @@ const routes = [
         component: ShoppingView,
       },
       {
-        path: 'cadastro',
-        name: 'cadastro',
-        component: CadastroView,
+        path: 'cadastroItem',
+        name: 'cadastroItem',
+        component: CadastroItemView,
       },
       {
         path: 'relatorios',
         name: 'relatorios',
         component: RelatorioView,
+      },
+      {
+        path: 'cadastroLista',
+        name: 'cadastroLista',
+        component: CadastroListaView,
       },
     ],
   },

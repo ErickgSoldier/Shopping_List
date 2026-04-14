@@ -1,5 +1,5 @@
 <script></script>
 
 <template>
-  <div>Relatorios</div>
+  <h1>Relatorios</h1>
 </template>
