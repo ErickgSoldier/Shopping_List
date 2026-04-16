@@ -28,13 +28,16 @@ function toggleMenu() {
           <router-link to="/"><button>Home</button></router-link>
         </li>
         <li>
+          <router-link to="/listacompras"><button>Listas</button></router-link>
+        </li>
+        <li>
           <router-link to="/cadastroItem"><button>Adicionar item</button></router-link>
         </li>
         <li>
-          <router-link to="/relatorios"><button>Relatórios</button></router-link>
+          <router-link to="/cadastroLista"><button>Adicionar Lista</button></router-link>
         </li>
         <li>
-          <router-link to="/cadastroLista"><button>Adicionar Lista</button></router-link>
+          <router-link to="/relatorios"><button>Relatórios</button></router-link>
         </li>
       </ul>
     </aside>

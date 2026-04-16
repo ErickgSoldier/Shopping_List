@@ -4,6 +4,7 @@ import ShoppingView from '@/views/CompraAtual.vue'
 import CadastroItemView from '@/views/CadastroItem.vue'
 import RelatorioView from '@/views/Relatorios.vue'
 import CadastroListaView from '@/views/CadastroLista.vue'
+import ListaComprasView from '@/views/ListaCompras.vue'
 
 const routes = [
   {
@@ -29,6 +30,11 @@ const routes = [
         path: 'cadastroLista',
         name: 'cadastroLista',
         component: CadastroListaView,
+      },
+      {
+        path: 'listacompras',
+        name: 'listacompras',
+        component: ListaComprasView,
       },
     ],
   },
