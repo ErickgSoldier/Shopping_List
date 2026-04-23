@@ -1,21 +1,25 @@
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const listas = ref([
   { id: 1, nome: 'Compra do mês' },
   { id: 2, nome: 'Mercado rápido' },
 ])
 
-function adicionarLista() {
-  const nome = prompt('Nome da nova lista:')
-  if (!nome) return
-
-  listas.value.push({
-    id: Date.now(),
-    nome,
-  })
+// 1 - Ir para cadastro
+function irParaCadastro() {
+  router.push('/cadastroLista')
 }
 
+// 2 - Abrir lista clicada
+function abrirLista(lista) {
+  router.push(`/lista/${lista.id}`)
+}
+
+// 3 - Editar lista
 function editarLista(lista) {
   const novoNome = prompt('Editar nome:', lista.nome)
   if (!novoNome) return
@@ -23,7 +27,11 @@ function editarLista(lista) {
   lista.nome = novoNome
 }
 
+// 4 - Excluir com confirmação
 function excluirLista(id) {
+  const confirmar = confirm('Tem certeza que deseja excluir esta lista?')
+  if (!confirmar) return
+
   listas.value = listas.value.filter((l) => l.id !== id)
 }
 </script>
@@ -33,24 +41,24 @@ function excluirLista(id) {
     <h1>Listas de Compras</h1>
 
     <!-- Botão adicionar -->
-    <button class="btn-add" @click="adicionarLista">+ Nova Lista</button>
+    <button class="btn-add" @click="irParaCadastro">+ Nova Lista</button>
 
     <table>
       <tbody>
         <tr v-for="lista in listas" :key="lista.id">
           <!-- Coluna 1 (clicável) -->
-          <td class="clicavel" @click="editarLista(lista)">
+          <td class="clicavel" @click="abrirLista(lista)">
             {{ lista.nome }}
           </td>
 
           <!-- Coluna 2 -->
           <td>
-            <button class="btn-editar" @click="editarLista(lista)">Editar</button>
+            <button class="btn-editar" @click.stop="editarLista(lista)">Editar</button>
           </td>
 
           <!-- Coluna 3 -->
           <td>
-            <button class="btn-excluir" @click="excluirLista(lista.id)">Excluir</button>
+            <button class="btn-excluir" @click.stop="excluirLista(lista.id)">Excluir</button>
           </td>
         </tr>
       </tbody>
@@ -112,6 +120,7 @@ td {
   font-weight: bold;
 }
 
+/* BOTÕES */
 button {
   padding: 6px 10px;
   border: none;
