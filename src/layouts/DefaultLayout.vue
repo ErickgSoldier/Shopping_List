@@ -1,18 +1,33 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 const menuAberto = ref(false)
+const sidebarRef = ref(null)
 
 function toggleMenu() {
   menuAberto.value = !menuAberto.value
 }
+
+function handleClickOutside(event) {
+  if (menuAberto.value && sidebarRef.value && !sidebarRef.value.contains(event.target)) {
+    menuAberto.value = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', handleClickOutside)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
 </script>
 
 <template>
   <div class="layout">
     <header class="header">
       <div class="left">
-        <button class="menu-btn" @click="toggleMenu">☰</button>
+        <button class="menu-btn" @click.stop="toggleMenu">☰</button>
       </div>
 
       <h1 class="title">Shopping List</h1>
@@ -22,7 +37,7 @@ function toggleMenu() {
       </div>
     </header>
 
-    <aside v-show="menuAberto" class="sidebar">
+    <aside v-show="menuAberto" ref="sidebarRef" class="sidebar">
       <ul>
         <li>
           <router-link to="/"><button>Home</button></router-link>

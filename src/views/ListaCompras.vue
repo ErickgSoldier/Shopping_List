@@ -9,12 +9,10 @@ const listas = ref([
   { id: 2, nome: 'Mercado rápido' },
 ])
 
-// 1 - Ir para cadastro
 function irParaCadastro() {
   router.push('/cadastroLista')
 }
 
-// 2 - Abrir lista clicada
 function abrirLista(lista) {
   router.push(`/lista/${lista.id}`)
 }
